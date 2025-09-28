@@ -2,7 +2,12 @@ import axios, {
     AxiosInstance,
     AxiosResponse,
   } from 'axios';
-  
+
+interface ApiError {
+    status: number;
+    message: string;
+  }
+
   // Cria uma instância do axios
   const api: AxiosInstance = axios.create({
     baseURL: 'http://localhost:3000/api/', 
@@ -19,14 +24,21 @@ import axios, {
     async (error) => {
 
       if (error.response) {
-        const { status } = error.response;
+        const { status, data } = error.response;
+
+        if(status > 400 || status < 405){
+          const errorBadRequest = new Error(data.error);
+          (errorBadRequest as unknown as ApiError).status = data.status
+          return Promise.reject(errorBadRequest)
+        }
+
   
-        if (status >= 400) {
+        if (status > 404) {
           return Promise.reject(
             new Error(
               JSON.stringify({
                 status,
-                message: error.response.data?.message || 'Erro desconhecido.',
+                message: error.response.data?.error || 'Erro desconhecido.',
               }),
             ),
           );
