@@ -14,10 +14,10 @@ function Cancelamento() {
   const [modalActive, setModal] = useState('hidden')
 
   const [dadosAtendimento, setDados] = useState({
-    nmPessoaFisica: "Kaio Mendes da Silva",
-    dtNascimento: "14-07-2004",
-    Sexo: "M",
-    nrCpf: "073.215.841-94"
+    nmPessoaFisica: "",
+    dtNascimento: "",
+    Sexo: "",
+    nrCpf: ""
   })
 
   const handleCancelamento = async () => {
