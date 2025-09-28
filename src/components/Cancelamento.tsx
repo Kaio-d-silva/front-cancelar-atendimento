@@ -86,11 +86,13 @@ function Cancelamento() {
       }
 
       setModal("hidden")
-    } catch (error) {
+    } catch (error: any) {
       setModal("hidden")
-      setMensagemStatus('Erro de conexão ou no servidor. Por favor, tente novamente.');
       setIsSuccess(false);
-      console.error('Erro na requisição:', error);
+      setMensagemStatus(error.message);
+      setTimeout(() => {
+          setMensagemStatus('')
+      }, 3000)
     }
   }
 
