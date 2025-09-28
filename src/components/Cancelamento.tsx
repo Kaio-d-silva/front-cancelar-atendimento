@@ -38,9 +38,29 @@ function Cancelamento() {
 
     setMensagemStatus(mensagem);
 
+    consultaAtendimento()
     setModal('visibible')
 
   };
+
+  const consultaAtendimento = async () => {
+    try {
+      const response = await api.get(`/tasy/consulta-atendimento/${numeroAtendimento}`)
+      console.log(response.data)
+      setDados(response.data)
+      const {DT_NASCIMENTO,IE_SEXO,NM_PESSOA_FISICA,NR_CPF} = response.data
+
+      setDados({
+        dtNascimento: DT_NASCIMENTO,
+        nmPessoaFisica: NM_PESSOA_FISICA,
+        nrCpf: NR_CPF,
+        Sexo: IE_SEXO
+      })
+    } catch (error) {
+      
+      
+    }
+  }
 
   const cancelaAtendimento = async () => {
     setMensagemStatus("Processando cancelamento")
