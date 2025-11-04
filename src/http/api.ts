@@ -10,7 +10,7 @@ interface ApiError {
 
   // Cria uma instância do axios
   const api: AxiosInstance = axios.create({
-    baseURL: 'http://localhost:3000/api/', 
+    baseURL: 'http://172.16.51.24:5002/api/', 
     headers: {
       'Content-Type': 'application/json',
     },
