@@ -78,7 +78,7 @@ function Cancelamento() {
         setIsSuccess(true)
         setNumeroAtendimento('');
         setMotivoCancelamento('');
-        setUsuarioCancelamento('');
+        // setUsuarioCancelamento('');
 
       } else {
         setMensagemStatus(response.data?.error || 'Erro inesperado cancele manualmente.')
@@ -100,7 +100,7 @@ function Cancelamento() {
     setModal("hidden")
     setNumeroAtendimento('');
     setMotivoCancelamento('');
-    setUsuarioCancelamento('');
+    // setUsuarioCancelamento('');
     setMensagemStatus('')
 
   }
